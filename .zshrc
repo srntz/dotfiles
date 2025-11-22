@@ -16,3 +16,6 @@ bindkey -e
 
 # set the shell prompt to hostname-pwd-$
 PROMPT='%m %F{blue}%6~%f $ '
+
+export EDITOR="nvim"
+export VISUAL="nvim"
