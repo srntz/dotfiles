@@ -19,3 +19,19 @@ PROMPT='%m %F{blue}%6~%f $ '
 
 export EDITOR="nvim"
 export VISUAL="nvim"
+
+# Add the local user bin to PATH 
+if [ -d "$HOME/.local/bin" ] ; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Add Go binary to PATH
+if [ -d "/usr/local/go/bin" ]; then
+  export PATH="$PATH:/usr/local/go/bin"
+fi
+
+# Add the GOPATH to PATH if the go binary exists.
+# This makes sure binaries like gopls are available in PATH
+if type "go" >/dev/null 2>/dev/null ; then
+  export PATH="$PATH:$(go env GOPATH)/bin"
+fi
