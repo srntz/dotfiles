@@ -1,3 +1,5 @@
+binary_exists_in_path() { type $1 >/dev/null 2>/dev/null; return $? }
+
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
@@ -32,6 +34,10 @@ fi
 
 # Add the GOPATH to PATH if the go binary exists.
 # This makes sure binaries like gopls are available in PATH
-if type "go" >/dev/null 2>/dev/null ; then
+if binary_exists_in_path go ; then
   export PATH="$PATH:$(go env GOPATH)/bin"
+fi
+
+if binary_exists_in_path zoxide ; then
+  eval "$(zoxide init zsh)"
 fi
